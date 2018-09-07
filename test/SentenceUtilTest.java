@@ -8,11 +8,19 @@ import static org.junit.Assert.assertEquals;
 public class SentenceUtilTest {
 
     @Test
-    public void testSentenceParseApostrophe(){
+    public void testSentenceParseDash(){
         SentenceUtil sentenceUtil = new SentenceUtil();
         ParseResult parseResult = sentenceUtil.parseSentenceWithTreeSet("The super-quick darkbrown fox jumps over the lazy dog");
         assertEquals(11,parseResult.getLength());
         assertEquals("super-quick",parseResult.getLongestWord());
+    }
+
+    @Test
+    public void testSentencePeriod(){
+        SentenceUtil sentenceUtil = new SentenceUtil();
+        ParseResult parseResult = sentenceUtil.parseSentenceWithTreeSet("The laziest.");
+        assertEquals(7,parseResult.getLength());
+        assertEquals("laziest",parseResult.getLongestWord());
     }
 
     @Test

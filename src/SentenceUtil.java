@@ -26,8 +26,9 @@ public class SentenceUtil {
         if(sentence == null || sentence.isEmpty()){
             return new ParseResult(0, "");
         }
-        String[] words = sentence.split(" ");
-        //fancy java 8 streams for
+        String localSentence = sentence.replaceAll(".","");
+        String[] words = localSentence.split(" ");
+        //fancy java 8 streams for comparing the length of the streams
         Stream<String> wordStream = Arrays.stream(words).sorted(Comparator.comparingInt(String::length).reversed());
         String longestWord = wordStream.findFirst().get();
         //if need to expand parseResult, consider a list
@@ -39,7 +40,8 @@ public class SentenceUtil {
         if(sentence == null || sentence.isEmpty()){
             return new ParseResult(0, "");
         }
-        String[] words = sentence.split(" ");
+        String localSentence = sentence.replaceAll("\\.","");
+        String[] words = localSentence.split(" ");
         Set<String> treeSet = new TreeSet<>(Comparator.comparing(String::length).reversed());
         for(String word : words){
             treeSet.add(word);
